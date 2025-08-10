@@ -115,5 +115,26 @@ with st.container():
     if st.session_state.historico:
         df_hist = pd.DataFrame(st.session_state.historico)
         st.table(df_hist)
+st.subheader("⚙️ Administração")
+
+col_a, col_b = st.columns(2)
+
+# Botão para resetar placar
+if col_a.button("🔄 Resetar Placar"):
+    from pathlib import Path
+    nomes = ["Madeira 🪵", "Alagoas 🏖️", "Wolverine ⚔️", "Dino 🦖", "Smoke 💨", "Joker 🤡"]
+    pontos_iniciais = {nome: 100 for nome in nomes}
+    save_points(pontos_iniciais)
+    st.session_state.pontos = pontos_iniciais
+    st.success("Placar resetado com sucesso!")
+    st.rerun()
+
+# Botão para apagar histórico
+if col_b.button("🗑️ Apagar Histórico"):
+    if os.path.exists(HIST_FILE):
+        os.remove(HIST_FILE)
+    st.session_state.historico = []
+    st.success("Histórico apagado com sucesso!")
+    st.rerun()
 
 
