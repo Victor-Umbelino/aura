@@ -78,7 +78,7 @@ with st.container():
                 "Justificativa": "(sem justificativa)"
             })
 
-            st.experimental_rerun()
+            st.rerun()
 
     # Ranking
     df = pd.DataFrame(list(st.session_state.pontos.items()), columns=["Nome", "Pontos"])
@@ -115,4 +115,5 @@ with st.container():
     if st.session_state.historico:
         df_hist = pd.DataFrame(st.session_state.historico)
         st.table(df_hist)
+
 
