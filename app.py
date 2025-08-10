@@ -110,8 +110,9 @@ with st.container():
             append_history(entry)
             st.session_state.historico = load_history()
             st.success("Alteração registrada no histórico!")
-            st.experimental_rerun()
+            st.rerun()
 
     if st.session_state.historico:
         df_hist = pd.DataFrame(st.session_state.historico)
         st.table(df_hist)
+
